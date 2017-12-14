@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GMCycleScrollView_Example' do
+  pod 'GMCycleScrollView', :path => '../'
+
+  target 'GMCycleScrollView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
