@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger,PageControlAliment){
 +(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageUrlsGroup:(NSArray*)imageUrlsGroup;
 +(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray*)imageNameGroup cycleLoop:(BOOL)isCycleLoop;
 
+/** 解决轮播图卡在一半的问题，在控制器viewWillAppear时调用此方法 */
+- (void)adjustWhenControllerViewWillAppera;
+
 @property(nonatomic,weak)id<GMCycleScrollViewDelegate>delegate;
 /** 数据源 */
 @property (nonatomic, strong) NSArray *imageURLStringsGroup;//网络图片url string数组

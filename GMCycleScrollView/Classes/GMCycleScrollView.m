@@ -37,6 +37,13 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     cycleView.localizationImageNamesGroup = imageNameGroup;
     return cycleView;
 }
+- (void)adjustWhenControllerViewWillAppera
+{
+    NSInteger cellIndex = [self cellIndex];
+    if (cellIndex < _totalPagesCount) {
+        [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    }
+}
 //代码初始化
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
