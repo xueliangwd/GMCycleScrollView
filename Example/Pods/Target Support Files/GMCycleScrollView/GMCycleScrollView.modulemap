@@ -1,0 +1,6 @@
+framework module GMCycleScrollView {
+  umbrella header "GMCycleScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}
