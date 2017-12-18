@@ -24,6 +24,10 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		F3199ACB1FE7BB6300CC8385 /* h3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3199AC71FE7BB6300CC8385 /* h3.jpg */; };
+		F3199ACC1FE7BB6300CC8385 /* h2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3199AC81FE7BB6300CC8385 /* h2.jpg */; };
+		F3199ACD1FE7BB6300CC8385 /* h1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3199AC91FE7BB6300CC8385 /* h1.jpg */; };
+		F3199ACE1FE7BB6300CC8385 /* h4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3199ACA1FE7BB6300CC8385 /* h4.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +44,7 @@
 		031957BB0413ACE16058C307 /* Pods-GMCycleScrollView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMCycleScrollView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GMCycleScrollView_Tests/Pods-GMCycleScrollView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0BF964F1BFA6F38E59A62D41 /* Pods_GMCycleScrollView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GMCycleScrollView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		263178CCEDF3325DDD85D03F /* Pods-GMCycleScrollView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMCycleScrollView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GMCycleScrollView_Tests/Pods-GMCycleScrollView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3C59463C2CA0FBCEECBD240B /* GMCycleScrollView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = GMCycleScrollView.podspec; path = ../GMCycleScrollView.podspec; sourceTree = "<group>"; };
+		3C59463C2CA0FBCEECBD240B /* GMCycleScrollView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GMCycleScrollView.podspec; path = ../GMCycleScrollView.podspec; sourceTree = "<group>"; };
 		596D5C91827FA652AA39E578 /* Pods_GMCycleScrollView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GMCycleScrollView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* GMCycleScrollView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMCycleScrollView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,10 +67,14 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		914D5AFD14F5E9F083BD0A58 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		914D5AFD14F5E9F083BD0A58 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A1D0A25B305E260EF472020A /* Pods-GMCycleScrollView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMCycleScrollView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GMCycleScrollView_Example/Pods-GMCycleScrollView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B52898F58F653B95B1DC2B27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		B52898F58F653B95B1DC2B27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BD6E29FD7098635F2C171CBD /* Pods-GMCycleScrollView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMCycleScrollView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GMCycleScrollView_Example/Pods-GMCycleScrollView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F3199AC71FE7BB6300CC8385 /* h3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h3.jpg; sourceTree = "<group>"; };
+		F3199AC81FE7BB6300CC8385 /* h2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h2.jpg; sourceTree = "<group>"; };
+		F3199AC91FE7BB6300CC8385 /* h1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h1.jpg; sourceTree = "<group>"; };
+		F3199ACA1FE7BB6300CC8385 /* h4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h4.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,10 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3199AC91FE7BB6300CC8385 /* h1.jpg */,
+				F3199AC81FE7BB6300CC8385 /* h2.jpg */,
+				F3199AC71FE7BB6300CC8385 /* h3.jpg */,
+				F3199ACA1FE7BB6300CC8385 /* h4.jpg */,
 				6003F595195388D20070C39A /* GMCycleScrollView-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -279,10 +291,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3199ACB1FE7BB6300CC8385 /* h3.jpg in Resources */,
+				F3199ACE1FE7BB6300CC8385 /* h4.jpg in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				F3199ACC1FE7BB6300CC8385 /* h2.jpg in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				F3199ACD1FE7BB6300CC8385 /* h1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,10 +321,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GMCycleScrollView_Example/Pods-GMCycleScrollView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GMCycleScrollView/GMCycleScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GMCycleScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

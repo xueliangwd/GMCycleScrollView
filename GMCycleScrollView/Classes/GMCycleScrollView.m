@@ -21,6 +21,22 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
 
 @end
 @implementation GMCycleScrollView
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray*)imageNameGroup{
+    GMCycleScrollView * cycleView = [[GMCycleScrollView alloc]initWithFrame:frame];
+    cycleView.localizationImageNamesGroup = imageNameGroup;
+    return cycleView;
+}
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageUrlsGroup:(NSArray*)imageUrlsGroup{
+    GMCycleScrollView * cycleView = [[GMCycleScrollView alloc]initWithFrame:frame];
+    cycleView.imageURLStringsGroup = imageUrlsGroup;
+    return cycleView;
+}
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray*)imageNameGroup cycleLoop:(BOOL)isCycleLoop{
+    GMCycleScrollView * cycleView = [[GMCycleScrollView alloc]initWithFrame:frame];
+    cycleView.isCycleLoop = isCycleLoop;
+    cycleView.localizationImageNamesGroup = imageNameGroup;
+    return cycleView;
+}
 //代码初始化
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -37,9 +53,19 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     [self initialization];
     [self setUpMainView];
 }
+-(void)dealloc{
+    [self invilidTimer];
+    _mainView.delegate = nil;
+    _mainView.dataSource = nil;
+}
 //数据初始化
 -(void)initialization{
-    
+    _isAutoScroll = YES;
+    _isShowPageControl = YES;
+    _pageControlAliment = PageContolAlimentCenter;
+    _autoScrollTimeInterval = 2.0;
+    _titleLableHeight = 36.0;
+    _titleLabelTextAlignment = NSTextAlignmentRight;
 }
 -(void)setUpMainView{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -52,7 +78,7 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     mainView.pagingEnabled = YES;
     mainView.showsHorizontalScrollIndicator = NO;
     mainView.showsVerticalScrollIndicator = NO;
-    [mainView registerClass:[GMCycleScrollView class] forCellWithReuseIdentifier:cellID];
+    [mainView registerClass:[GMCycleScrollViewCell class] forCellWithReuseIdentifier:cellID];
 
     mainView.dataSource = self;
     mainView.delegate = self;
@@ -65,7 +91,40 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
 -(void)layoutSubviews{
     [super layoutSubviews];
     //设置subviews 的frame
+    self.delegate = self.delegate;
+    _flowLayout.itemSize = self.frame.size;
+    _mainView.frame = self.bounds;
+    if (_mainView.contentOffset.x == 0 &&  _totalPagesCount) {
+        // 初始化mainView位置
+        int targetIndex = 0;
+        if (self.isCycleLoop) {
+            targetIndex = _totalPagesCount * 0.5;
+        }else{
+            targetIndex = 0;
+        }
+        [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:targetIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    }
+    //pageControl
+    if(!_isShowPageControl){
+        self.pageControl.hidden = YES;
+    }else{
+        [self.pageControl sizeToFit];
+        CGSize pageControlSize = self.pageControl.bounds.size;
 
+        switch (self.pageControlAliment) {
+            case PageContolAlimentLeft:
+                _pageControl.frame = CGRectMake(10, self.bounds.size.height-pageControlSize.height-5.0, pageControlSize.width, pageControlSize.height);
+                break;
+            case PageContolAlimentRight:
+                _pageControl.frame = CGRectMake(self.bounds.size.width - 10 - pageControlSize.width, self.bounds.size.height-pageControlSize.height-5.0, pageControlSize.width, pageControlSize.height);
+
+                break;
+            default:
+                _pageControl.frame = CGRectMake((self.bounds.size.width - pageControlSize.width)/2.0, self.bounds.size.height-pageControlSize.height-5.0, pageControlSize.width, pageControlSize.height);
+
+                break;
+        }
+    }
 }
 #pragma mark Timer
 -(void)invilidTimer{
@@ -113,12 +172,28 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     return index%self.imagePathsGroup.count;
 }
 #pragma mark property
+-(void)setIsAutoScroll:(BOOL)isAutoScroll{
+    _isAutoScroll = isAutoScroll;
+    [self invilidTimer];
+    if(_isAutoScroll){
+        [self setUpTimer];
+    }
+}
 -(void)setImagePathsGroup:(NSArray *)imagePathsGroup{
     _imagePathsGroup = imagePathsGroup;
     _totalPagesCount = _isCycleLoop?_imagePathsGroup.count*100:imagePathsGroup.count;
     //重置pagecontrol
     [self setUpPageControl];
     [_mainView reloadData];
+}
+-(void)setLocalizationImageNamesGroup:(NSArray *)localizationImageNamesGroup{
+    _localizationImageNamesGroup = localizationImageNamesGroup;
+    self.imagePathsGroup = [localizationImageNamesGroup copy];
+
+}
+-(void)setImageURLStringsGroup:(NSArray *)imageURLStringsGroup{
+    _imagePathsGroup = imageURLStringsGroup;
+    self.imagePathsGroup = [imageURLStringsGroup copy];
 }
 #pragma mark UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -129,6 +204,10 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     GMCycleScrollViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     if (!cell.hasConfig) {
         cell.hasConfig = YES;
+        cell.titleLabelHeight = self.titleLableHeight;
+        cell.titleLabelTextColor = self.titleLabelTextColor;
+        cell.titleLabelTextFont = self.titleLabelTextFont;
+        cell.titleLabelTextAlignment = self.titleLabelTextAlignment;
     }
     NSInteger currentIndex = [self pageIndexWithCellIndex:indexPath.item];
     NSString *imagePath = _imagePathsGroup[currentIndex];
@@ -137,7 +216,7 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
         cell.imageView.image = image;
     }else{
         if ([imagePath hasPrefix:@"http"]) {
-//             [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+             [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage options:SDWebImageAllowInvalidSSLCertificates];
         }else{
             cell.imageView.image = [UIImage imageNamed:imagePath];
         }
@@ -150,7 +229,9 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
 #pragma mark UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"click index:%ld",indexPath.row);
-
+    if([self.delegate respondsToSelector:@selector(cycleScrollView:didSelectAtIndex:)]){
+        [self.delegate cycleScrollView:self didSelectAtIndex:indexPath.item];
+    }
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -162,13 +243,13 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if (self.isCycleLoop) {
+    if (self.isAutoScroll) {
         [self invilidTimer];
     }
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (self.isCycleLoop) {
+    if (self.isAutoScroll) {
         [self setUpTimer];
     }
 }

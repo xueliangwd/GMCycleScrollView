@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
   #   'GMCycleScrollView' => ['GMCycleScrollView/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+   s.public_header_files = 'GMCycleScrollView/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
    s.dependency 'SDWebImage', '~> 4.0.0'
 end
