@@ -20,8 +20,11 @@ typedef NS_ENUM(NSInteger,PageControlAliment){
 @end
 
 @interface GMCycleScrollView : UIView
-@property(nonatomic,weak)id<GMCycleScrollViewDelegate>delegate;
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray*)imageNameGroup;
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageUrlsGroup:(NSArray*)imageUrlsGroup;
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray*)imageNameGroup cycleLoop:(BOOL)isCycleLoop;
 
+@property(nonatomic,weak)id<GMCycleScrollViewDelegate>delegate;
 /** 数据源 */
 @property (nonatomic, strong) NSArray *imageURLStringsGroup;//网络图片url string数组
 @property (nonatomic, strong) NSArray *titlesGroup;//每张图片对应要显示的文字数组
@@ -36,13 +39,13 @@ typedef NS_ENUM(NSInteger,PageControlAliment){
 @property(nonatomic,assign) PageControlAliment pageControlAliment;
 /**Config*/
 @property(nonatomic,assign) CGFloat autoScrollTimeInterval;//自动轮播间隔时间
-@property(nonatomic,strong) UIColor *pageIndicatorTintColor;
-@property(nonatomic,strong) UIColor *currentPageIndicatorTintColor;
+@property(nonatomic,strong) UIColor *pageIndicatorTintColor;//pageControl 圆点颜色
+@property(nonatomic,strong) UIColor *currentPageIndicatorTintColor;//pageControl 当前页圆点颜色
 
 @property(nonatomic,assign) CGFloat titleLableHeight; //标题高
-@property (nonatomic, strong) UIColor *titleLabelTextColor;
-@property (nonatomic, strong) UIFont *titleLabelTextFont;
-@property (nonatomic, assign) NSTextAlignment titleLabelTextAlignment;
+@property (nonatomic, strong) UIColor *titleLabelTextColor;//标题颜色
+@property (nonatomic, strong) UIFont *titleLabelTextFont;//标题字体
+@property (nonatomic, assign) NSTextAlignment titleLabelTextAlignment;//标题位置
 /** 自定义设置 */
 
 @end
