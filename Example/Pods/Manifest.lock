@@ -1,12 +1,14 @@
 PODS:
   - GMCycleScrollView (0.1.0):
     - SDWebImage (~> 4.0.0)
+  - Masonry (1.1.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - GMCycleScrollView (from `../`)
+  - Masonry
 
 EXTERNAL SOURCES:
   GMCycleScrollView:
@@ -14,8 +16,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   GMCycleScrollView: 39b9b7c21008a2975d4a4f27ef1dea904fdc084e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 25c48d7092aed4999ceac18039fa031608fad5ae
+PODFILE CHECKSUM: 5dc1d9acbffac44950386e144adee7bee178e3dd
 
 COCOAPODS: 1.3.1

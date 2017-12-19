@@ -179,6 +179,12 @@ NSString *const  cellID = @"GMCycleScrollViewCellID";
     return index%self.imagePathsGroup.count;
 }
 #pragma mark property
+-(void)setIsCycleLoop:(BOOL)isCycleLoop{
+    _isCycleLoop = isCycleLoop;
+    if(self.imagePathsGroup.count){
+        self.imagePathsGroup = _imagePathsGroup;
+    }
+}
 -(void)setIsAutoScroll:(BOOL)isAutoScroll{
     _isAutoScroll = isAutoScroll;
     [self invilidTimer];
